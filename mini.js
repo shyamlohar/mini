@@ -72,21 +72,53 @@ const toggleClass = function (name) {
 
 }
 
-const html = function(data){
-    if(data != undefined){
-        this.innerHTML = data;
+const html = function (data) {
+    if(this.constructor == Array){
+        values = []
+        this.forEach(elem => {
+            if (data != undefined) {
+                return elem.innerHTML = data;
+            }
+            else {
+                values.push(elem.innerHTML);
+            }
+        })
+        if(values.length != 0){
+            return values
+        }
     }
     else{
-        return this.innerHTML;
+        if (data != undefined) {
+            this.innerHTML = data;
+        }
+        else {
+            return this.innerHTML;
+        }
     }
 }
 
-const text = function(data){
-    if(data != undefined){
-        this.textContent = data;
+const text = function (data) {
+    if(this.constructor == Array){
+        values = []
+        this.forEach(elem => {
+            if (data != undefined) {
+                return elem.textContent = data;
+            }
+            else {
+                values.push(elem.textContent);
+            }
+        })
+        if(values.length != 0){
+            return values
+        }
     }
     else{
-    return this.textContent;
+        if (data != undefined) {
+            this.textContent = data;
+        }
+        else {
+            return this.textContent;
+        }
     }
 }
 
