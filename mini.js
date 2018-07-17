@@ -7,8 +7,17 @@ const off = function(name,cb){
 }
 
 const css = function (values) {
-    for (let key in values) {
-        this.style[key] = values[key];
+    if (this.constructor === Array) {
+        this.forEach(elem => {
+            for (let key in values) {
+                elem.style[key] = values[key];
+            }
+        })
+    }
+    else {
+        for (let key in values) {
+            this.style[key] = values[key];
+        }
     }
 }
 
@@ -122,12 +131,28 @@ const text = function (data) {
     }
 }
 
-const val = function(value){
-    if(value != undefined){
-        this.value = value;
+const val = function (value) {
+    if (this.constructor == Array) {
+        values = []
+        this.forEach(elem => {
+            if (value != undefined) {
+                return elem.value = value;
+            }
+            else {
+                values.push(elem.value);
+            }
+        })
+        if (values.length != 0) {
+            return values
+        }
     }
-    else{
-        return this.value;
+    else {
+        if (value != undefined) {
+            this.value = value;
+        }
+        else {
+            return this.value;
+        }
     }
 }
 
