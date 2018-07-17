@@ -12,30 +12,62 @@ const css = function (values) {
     }
 }
 
-const addClass = function(names){
+const addClass = function (names) {
     names = names.split(' ');
     elem = this;
-    names.forEach(function(name){
-        elem.classList.add(name);
-    })
+    if (this.constructor === Array) {
+        this.forEach(elem => {
+            names.forEach(function (name) {
+                elem.classList.add(name);
+            })
+        })
+    }
+    else {
+        names.forEach(function (name) {
+            elem.classList.add(name);
+        })
+    }
 }
 
-const removeClass = function(names){
+const removeClass = function (names) {
     names = names.split(' ');
     elem = this;
-    names.forEach(function(name){
-        elem.classList.remove(name);
-    })
+    if (this.constructor === Array) {
+        this.forEach(elem => {
+            names.forEach(function (name) {
+                elem.classList.remove(name);
+            })
+        })
+    }
+    else {
+        names.forEach(function (name) {
+            elem.classList.remove(name);
+        })
+    }
 }
 
-const toggleClass = function(name){
-    present = this.getAttribute('class');
-    present = present.split(' ');
-    if(present.indexOf(name) != -1){
-        this.classList.remove(name);
+const toggleClass = function (name) {
+    if (this.constructor == Array) {
+        this.forEach(elem => {
+            present = elem.getAttribute('class');
+            present = present.split(' ');
+            if (present.indexOf(name) != -1) {
+                elem.classList.remove(name);
+            }
+            else {
+                elem.classList.add(name);
+            }
+        })
     }
     else{
-        this.classList.add(name);
+        present = this.getAttribute('class');
+        present = present.split(' ');
+        if (present.indexOf(name) != -1) {
+            this.classList.remove(name);
+        }
+        else {
+            this.classList.add(name);
+        }
     }
 
 }
