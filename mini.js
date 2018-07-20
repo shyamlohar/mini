@@ -1,332 +1,163 @@
-const on = function (name, cb) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.addEventListener(name, cb)
-        })
-    }
-    else {
-        this.addEventListener(name, cb);
-    }
-}
+(function (global) {
 
-const off = function (name, cb) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.removeEventListener(name, cb)
-        })
-    }
-    else {
-        this.removeEventListener(name, cb);
-    }
-}
+    const each = fn =>
+        function (...args) {
+            this.elements.forEach(elem =>
+                fn(elem, ...args));
+            return this;
+        };
 
-const css = function (values) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            for (let key in values) {
-                elem.style[key] = values[key];
-            }
-        })
-    }
-    else {
-        for (let key in values) {
-            this.style[key] = values[key];
-        }
-    }
-}
+    const on = each((element, eventName, handler, ) =>
+        element.addEventListener(eventName, handler))
 
-const addClass = function (names) {
-    names = names.split(' ');
-    elem = this;
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            names.forEach(function (name) {
-                elem.classList.add(name);
-            })
-        })
-    }
-    else {
-        names.forEach(function (name) {
-            elem.classList.add(name);
-        })
-    }
-}
+    const off = each((element, eventName, handler, ) =>
+        element.removeEventListener(eventName, handler))
 
-const removeClass = function (names) {
-    names = names.split(' ');
-    elem = this;
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            names.forEach(function (name) {
-                elem.classList.remove(name);
-            })
-        })
-    }
-    else {
-        names.forEach(function (name) {
-            elem.classList.remove(name);
-        })
-    }
-}
+    const addClass = each((element, className) => {
+        let classNames = className.split(' ');
+        classNames.forEach(name => {
+            element.classList.add(name)
+        });
+    })
 
-const toggleClass = function (name) {
-    if (this.constructor == Array) {
-        this.forEach(elem => {
-            present = elem.getAttribute('class');
-            present = present.split(' ');
-            if (present.indexOf(name) != -1) {
-                elem.classList.remove(name);
-            }
-            else {
-                elem.classList.add(name);
-            }
-        })
-    }
-    else {
-        present = this.getAttribute('class');
-        present = present.split(' ');
-        if (present.indexOf(name) != -1) {
-            this.classList.remove(name);
-        }
-        else {
-            this.classList.add(name);
-        }
-    }
+    const removeClass = each((element, className) => {
+        let classNames = className.split(' ');
+        classNames.forEach(name => {
+            element.classList.remove(name)
+        });
+    })
 
-}
+    const toggleClass = each((element, className) => {
+        element.classList.toggle(className)
+    })
 
-const html = function (data) {
-    if (this.constructor == Array) {
-        values = []
-        this.forEach(elem => {
-            if (data != undefined) {
-                return elem.innerHTML = data;
-            }
-            else {
-                values.push(elem.innerHTML);
-            }
-        })
-        if (values.length != 0) {
-            return values
-        }
-    }
-    else {
+    const html = function (data) {
         if (data != undefined) {
-            this.innerHTML = data;
+            this.elements.forEach(elem => elem.innerHTML = data);
+            return this
         }
         else {
-            return this.innerHTML;
-        }
-    }
-}
-
-const text = function (data) {
-    if (this.constructor == Array) {
-        values = []
-        this.forEach(elem => {
-            if (data != undefined) {
-                return elem.textContent = data;
-            }
-            else {
-                values.push(elem.textContent);
-            }
-        })
-        if (values.length != 0) {
+            let values = [];
+            this.elements.forEach(elem => values.push(elem.innerHTML));
             return values
         }
     }
-    else {
+
+    const text = function (data) {
         if (data != undefined) {
-            this.textContent = data;
+            this.elements.forEach(elem => elem.textContent = data);
+            return this
         }
         else {
-            return this.textContent;
-        }
-    }
-}
-
-const val = function (value) {
-    if (this.constructor == Array) {
-        values = []
-        this.forEach(elem => {
-            if (value != undefined) {
-                return elem.value = value;
-            }
-            else {
-                values.push(elem.value);
-            }
-        })
-        if (values.length != 0) {
+            let values = [];
+            this.elements.forEach(elem => values.push(elem.textContent));
             return values
         }
     }
-    else {
-        if (value != undefined) {
-            this.value = value;
+
+    const val = function (value) {
+        if (value != undefined) {;
+            this.elements.forEach(elem => elem.value = value);
+            return this
         }
         else {
-            return this.value;
+            let values = [];
+            this.elements.forEach(elem => values.push(elem.value));
+            return values
         }
     }
-}
 
-const attr = function (attr, value) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            if (attr != undefined && value == undefined) {
-                return elem.getAttribute(attr)
-            }
-            if (attr != undefined && value != undefined) {
-                return elem.setAttribute(attr, value)
-            }
-            else {
-                throw "error occured attr takes 1 or 2 arguments passed"
-
-            }
-        })
-    }
-    else {
-        if (attr != undefined && value == undefined) {
-            return this.getAttribute(attr)
-        }
+    const attr = each((element, attr, value) => {
         if (attr != undefined && value != undefined) {
-            return this.setAttribute(attr, value)
+            return element.setAttribute(attr, value);
+        }
+        if (attr != undefined && value == undefined) {
+            return element.getAttribute(attr);
         }
         else {
-            throw "error occured attr takes 1 or 2 arguments passed"
-
+            throw "error takes atleast one argument recieved 0";
         }
-    }
-}
+    })
 
-const parent = function () {
-    if (this.constructor === Array) {
-        return this[0].parentNode
+    const parent = function(){
+        let elementsArray = []
+        elementsArray.push(this.elements[0].parentNode);
+        return Object.create(features,{
+            elements: {
+                value:elementsArray
+            }
+        });
     }
-    else {
-        return this.parentNode
-    }
-}
 
-const child = function () {
-    if (this.constructor === Array) {
-        return Array.from(this[0].children)
+    const children = function(){
+        let childArray = Array.from(this.elements[0].children)
+        return Object.create(features,{
+            elements: {
+                value:childArray
+            }
+        });
     }
-    else {
-        return Array.from(this.children)
-    }
-}
 
-const next = function () {
-    if (this.constructor === Array) {
-        return this[0].nextElementSibling
+    const next = function(){
+        let elementsArray = []
+        elementsArray.push(this.elements[0].nextElementSibling);
+        return Object.create(features,{
+            elements: {
+                value:elementsArray
+            }
+        });
     }
-    else {
-        return this.nextElementSibling
-    }
-}
 
-const styles = function (name) {
-    if (this.constructor === Array) {
-        if (name != undefined) {
-            return window.getComputedStyle(this[0], null).getPropertyValue(name)
+    const is = function(selector){
+        return this.elements[0].matches(selector);
+    }
+
+    const append = each((elem,data) => {
+        elem.appendChild(data.cloneNode(true));
+    })
+
+    const prepend = each((elem,data) => {
+        elem.insertBefore(data.cloneNode(true),elem.firstChild);
+    })
+
+    const hide = each((elem) => {
+        elem.style.display = "none";
+    })
+
+    const show = each((elem) => {
+        elem.style.display = "";
+    })
+
+    const css = each((elem,styles) => {
+        console.log(styles)
+        for(let key in styles){
+            elem.style[key] = styles[key]
         }
-        else {
-            return window.getComputedStyle(this[0], null)
-        }
-    }
-    else {
-        if (name != undefined) {
-            return window.getComputedStyle(this, null).getPropertyValue(name)
-        }
-        else {
-            return window.getComputedStyle(this, null)
-        }
-    }
-}
+    })
 
-const is = function (selector) {
-    if (this.constructor === Array) {
-        return this[0].matches(selector)
+    const styles = function(name){
+        return window.getComputedStyle(this.elements[0],null).getPropertyValue(name)
     }
-    else {
-        return this.matches(selector)
-    }
-}
-
-const append = function (element) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.appendChild(element.cloneNode(true))
-        })
-    }
-    else {
-        this.appendChild(element)
-    }
-}
-
-const prepend = function (element) {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.insertBefore(element.cloneNode(true), elem.firstChild)
-        })
-    }
-    else {
-        this.insertBefore(element, this.firstChild)
-    }
-}
-
-const hide = function () {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.style.display = "none"
-        })
-    }
-    else {
-        this.style.display = 'none';
-    }
-}
-
-const show = function () {
-    if (this.constructor === Array) {
-        this.forEach(elem => {
-            elem.style.display = ''
-        })
-    }
-    else {
-        this.style.display = '';
-    }
-}
 
 
-const features = {
-    on, off, css, addClass, removeClass, toggleClass, html, text,
-    val, attr, parent, child, next, styles, is, append, prepend, hide, show
-}
+    const features = {
+        on, off, addClass, removeClass, toggleClass, html, text, val, attr,
+        parent,children,next,is,append,prepend,hide,show,css,styles
+    };
 
-$ = (name) => {
-    value = Array.from(document.querySelectorAll(name));
-    if (value.length == 1) {
-        value[0] = Object.assign(value[0], features);
-        return value[0]
+    global.$ = selector =>
+        Object.create(features, {
+            elements: {
+                value: document.querySelectorAll(selector)
+            }
+        });
+
+    global.$.create = function(selector,data){
+        let element = document.createElement(selector);
+        let textnode = document.createTextNode(data);
+        element.appendChild(textnode);
+        return element
     }
-    else {
-        elements = []
-        value.forEach(val => {
-            elem = Object.assign(val, features);
-            elements.push(elem);
-        })
-        elements = Object.assign(elements, features)
-        return elements
-    }
-}
-
-//function to create elements
 
 
-$create = function (name, content) {
-    elem = document.createElement(name);
-    textnode = document.createTextNode(content);
-    elem.appendChild(textnode);
-    return elem;
-}
+})(typeof window !== 'undefined' ? window : this)
