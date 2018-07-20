@@ -28,7 +28,8 @@
     })
 
     const toggleClass = each((element, className) => {
-        element.classList.toggle(className)
+        let classNames = className.split(' ');
+        classNames.forEach(name => element.classList.toggle(name))
     })
 
     const html = function (data) {
