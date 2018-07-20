@@ -177,6 +177,20 @@ $('#myheader').removeClass('primary')
 
 ```
 
+### toggleClass
+
+#toggle class method takes one string argument. you can pass multiple class names buy seoarating them with space
+
+E.g Follwing method checks each element for the specified class names. The class names are added if missing, and removed if already set - This creates a toggle effect.
+
+```
+$('p').toggleClass('lead')
+
+#this code will add lead class to all p tags if lead class isnt there. and will remove lead class if it already exists.
+
+```
+
+
 ### html
 
 #html takes one optional argument if argument is given it will replace innerHTML of selected element and if argument isnt passed to method it will return innerHTML of selected element.
@@ -391,8 +405,8 @@ E.g to remove click event from selected element.
 
 ---
 
-# Note
+# Credits 
 
-####All other vanilla javascript methods are available on all elements####
+Special Thanks to [trgwii](https://github.com/trgwii) who helped with optimization of library. 
 
 ---
