@@ -132,7 +132,7 @@ So thats how you get reference to DOM elements.
 
 ---
 
-# How to use this methods
+# How to use these methods
 
 ### addClass
 
