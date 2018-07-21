@@ -3,13 +3,13 @@
 
 # Mini, The Minimal DOM manipulation Library
 
-Mini is minimal DOM manipulating dibrary which uses Jquery like syntax. only mostly used dom manipulation methods are packed in this library to keep it minimal and tiny.
+Mini is minimal DOM manipulating library which uses Jquery like syntax. only mostly used dom manipulation methods are packed in this library to keep it minimal and tiny.
 
 ----
 
 # Why Mini?
-in some situations you just wanna do simple things like toggle class,add class,remove class,set attribute or remove  attribute and simple things like that.
-and thats where mini can be useful.You dont have to load jquery which is pretty big for simple tasks. mini is just 3kb in size and easy to use and does the job.
+in some situations you just wanna do simple things like toggle class, add class, remove class, set attribute or remove  attribute and simple things like that.
+and that's where mini can be useful. You don't have to load jquery which is pretty big for simple tasks. mini is just 3kb in size and easy to use and does the job.
 
 ---
 
@@ -17,7 +17,7 @@ and thats where mini can be useful.You dont have to load jquery which is pretty 
 Just link the mini.js or mini-minified.js right before the closing ```</body>``` tag, followed by your own custom JavaScript file, scripts.js or whatever you name it.
 
 link mini.js in your html as mentioned above.
-keep mini.js and create script.js in your project foler and add it right after mini.js like.
+keep mini.js and create script.js in your project folder and add it right after mini.js like.
 
 your project folder should look like 
 ```
@@ -85,14 +85,14 @@ selectedElements.forEach(elem => {
 
 ```
 
-To get referenceof element with Id 
+To get reference of element with Id 
 
 ```
 const selectedElement = $('#idofelement')
 
 ```
 
-or you can you use css selectors to acesss DOM elements 
+or you can use css selectors to access DOM elements 
 
 E.g
 
@@ -179,21 +179,21 @@ $('#myheader').removeClass('primary')
 
 ### toggleClass
 
-#toggle class method takes one string argument. you can pass multiple class names buy seoarating them with space
+#toggle class method takes one string argument. you can pass multiple class names by separating them with space
 
-E.g Follwing method checks each element for the specified class names. The class names are added if missing, and removed if already set - This creates a toggle effect.
+E.g Following method checks each element for the specified class names. The class names are added if missing, and removed if already set - This creates a toggle effect.
 
 ```
 $('p').toggleClass('lead')
 
-#this code will add lead class to all p tags if lead class isnt there. and will remove lead class if it already exists.
+#this code will add lead class to all p tags if lead class isn't there. and will remove lead class if it already exists.
 
 ```
 
 
 ### html
 
-#html takes one optional argument if argument is given it will replace innerHTML of selected element and if argument isnt passed to method it will return innerHTML of selected element.
+#html takes one optional argument if argument is given it will replace innerHTML of selected element and if argument isn't passed to method it will return innerHTML of selected element.
 
 ```
 $('#myheader').html()
@@ -247,7 +247,7 @@ $('#img2').attr('src','img1.jpeg')
 
 # parent 
 
-#this method doesnt take any argument and returns parent element of selected element 
+#this method doesn't take any argument and returns parent element of selected element 
 
 E.g to get parent element of selected element with id child 
 
@@ -258,7 +258,7 @@ $('#child').parent()
 
 # child
 
-#this method doesnt take any argument and returns parent element of selected element 
+#this method doesn't take any argument and returns parent element of selected element 
 
 E.g to get child elements of selected element with id child 
 
@@ -272,7 +272,7 @@ this method returns an Array of children of selected element.
 
 # next 
 
-#this method doesnt take any argument and returns sibiling element of selected element 
+#this method doesn't take any argument and returns sibiling element of selected element 
 
 ```
 $('#firstbrother').next()
@@ -335,7 +335,7 @@ $('.container').prepend($create('h1','hello world'))
 
 # hide 
 
-#this method doesnt take any arguments. this method hides selected elements.
+#this method doesn't take any arguments. this method hides selected elements.
 
 E.g to hide all elements with p tag 
 
@@ -346,7 +346,7 @@ $(p).hide()
 
 #show 
 
-#this method doesnt take any arguments. this method shows selected elements which are hidden using hide method.
+#this method doesn't take any arguments. this method shows selected elements which are hidden using hide method.
 
 E.g to show all elements with p tag which are hidden using hide method before
 
@@ -360,7 +360,7 @@ $(p).show()
 #this method takes one argument of object type and sets css property on selected element
 
 
-E.g to add one or more css properties on slected DOM elements 
+E.g to add one or more css properties on selected DOM elements 
 
 ```
 $('#selectedelement').css({'color':'red','border': 1px solid red})
