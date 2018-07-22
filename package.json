@@ -1,6 +1,6 @@
 {
   "name": "mini-dom-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Mini is minimal DOM manipulating library which uses Jquery like syntax.",
   "main": "mini.js ",
   "repository": {
