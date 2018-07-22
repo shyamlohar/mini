@@ -13,6 +13,12 @@ and that's where mini can be useful. You don't have to load jquery which is pret
 
 ---
 
+# How to install using npm
+
+``` npm i mini-dom-library ```
+
+---
+
 # How to use
 Just link the mini.js or mini-minified.js right before the closing ```</body>``` tag, followed by your own custom JavaScript file, scripts.js or whatever you name it.
 

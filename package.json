@@ -1,11 +1,25 @@
 {
-  "name": "domlibrary",
+  "name": "mini-dom-library",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js ",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Mini is minimal DOM manipulating library which uses Jquery like syntax.",
+  "main": "mini.js ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shyamlohar/mini.git"
   },
+  "keywords": [
+    "DOM",
+    "DOM manipulation",
+    "dom",
+    "mini",
+    "dom library",
+    "dom manipulation library",
+    "minimal dom manipulation library"
+  ],
+  "bugs": {
+    "url": "https://github.com/shyamlohar/mini/issues"
+  },
+  "homepage": "https://github.com/shyamlohar/mini#readme",
   "author": "shyam lohar",
   "license": "ISC"
 }
