@@ -134,6 +134,29 @@ So thats how you get reference to DOM elements.
 
 ---
 
+# How Fast mini is?
+
+### Table below shows the time taken to finish one method call by jquery vs mini.
+
+| method                | Jquery execution time in ms | mini execution time in ms |
+|-----------------------|-----------------------------|---------------------------|
+| .html()               |            1.06ms           |           0.30ms          |
+| .text()               |            1.09ms           |           0.29ms          |
+| .attr('name')         |            1.11ms           |           0.33ms          |
+| .attr('name','value') |            1.21ms           |           0.34ms          |
+| .parent()             |            1.02ms           |           0.35ms          |
+| .children()           |            1.12ms           |           0.40ms          |
+| .next()               |            1.17ms           |           0.40ms          |
+| .is()                 |            1.45ms           |           0.21ms          |
+| .append('elem')       |            2.18ms           |           0.50ms          |
+| .prepend('elem')      |            2.30ms           |           0.52ms          |
+| .show()               |            3.5ms            |           0.32ms          |
+| .hide()               |            1.62ms           |           0.39ms          |
+| .on()                 |            1.53ms           |           0.42ms          |
+| .css()                |            1.74ms           |           3.2 ms          |
+
+
+
 # How to use these methods
 
 ### addClass
